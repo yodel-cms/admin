@@ -23,7 +23,7 @@ header, footer, section, nav, article {
 aside {
 	display: inline;
 }
-/* Fucking Firefox. */
+/* Firefox. */
 button::-moz-focus-inner { 
     border: 0;
     padding: 0;
@@ -38,7 +38,6 @@ input {
 	-moz-outline-style: none;
 }
 ::-moz-focus-inner {
-	/* Die Nazi bastard! */
 	border: none;
 }
 body {

@@ -1,5 +1,5 @@
 /*
- * jQuery UI CSS Framework 1.8.9
+ * jQuery UI CSS Framework 1.8.10
  *
  * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -42,7 +42,7 @@
 
 
 /*
- * jQuery UI CSS Framework 1.8.9
+ * jQuery UI CSS Framework 1.8.10
  *
  * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -293,17 +293,7 @@
 /* Overlays */
 .ui-widget-overlay { background: #aaaaaa url(images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x; opacity: .30;filter:Alpha(Opacity=30); }
 .ui-widget-shadow { margin: -8px 0 0 -8px; padding: 8px; background: #aaaaaa url(images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x; opacity: .30;filter:Alpha(Opacity=30); -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; }/*
- * jQuery UI Selectable 1.8.9
- *
- * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://jquery.org/license
- *
- * http://docs.jquery.com/UI/Selectable#theming
- */
-.ui-selectable-helper { position: absolute; z-index: 100; border:1px dotted black; }
-/*
- * jQuery UI Slider 1.8.9
+ * jQuery UI Slider 1.8.10
  *
  * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -326,7 +316,7 @@
 .ui-slider-vertical .ui-slider-range { left: 0; width: 100%; }
 .ui-slider-vertical .ui-slider-range-min { bottom: 0; }
 .ui-slider-vertical .ui-slider-range-max { top: 0; }/*
- * jQuery UI Datepicker 1.8.9
+ * jQuery UI Datepicker 1.8.10
  *
  * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.

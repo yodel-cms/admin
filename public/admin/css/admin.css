@@ -13,7 +13,7 @@ a {
 header {
   width: 242px;
   height: 98px;
-  background-image: url(top_gradient.png);
+  background-image: url(/admin/images/top_gradient.png);
   border-right: 1px solid #B3B3B3;
   border-bottom: 1px solid #B3B3B3;
   position: absolute;
@@ -43,7 +43,7 @@ header {
   
     header nav li#page {
       width: 175px;
-      background-image: url(page.png);
+      background-image: url(/admin/images/page.png);
       background-repeat: no-repeat;
       background-position: 0px 4px;
       padding-left: 23px;
@@ -72,11 +72,11 @@ header {
     }
     
     header nav li#logout {
-      background-image: url(logout.png);
+      background-image: url(/admin/images/logout.png);
     }
     
     header nav li#settings {
-      background-image: url(settings.png);
+      background-image: url(/admin/images/settings.png);
     }
 
 
@@ -114,7 +114,7 @@ nav.previous_folder {
 }
 
   nav.previous_folder a {
-    background-image: url(left_arrow.png);
+    background-image: url(/admin/images/left_arrow.png);
     background-repeat: no-repeat;
     background-position: 10px 12px;
     font-size: 12px;
@@ -216,12 +216,12 @@ nav.records {
         }
         
           nav.records ul li h1 div.folder_state.open {
-            background-image: url(open.png);
+            background-image: url(/admin/images/open.png);
             visibility: visible;
           }
           
           nav.records ul li h1 div.folder_state.close {
-            background-image: url(close.png);
+            background-image: url(/admin/images/close.png);
           }
     
         nav.records ul li h1 div.slide {
@@ -230,7 +230,7 @@ nav.records {
           display: inline-block;
           position: relative;
           left: 5px;
-          background-image: url(right_arrow.png);
+          background-image: url(/admin/images/right_arrow.png);
         }
         
         nav.records ul li h1 div.drag {
@@ -238,7 +238,7 @@ nav.records {
           height: 12px;
           display: inline-block;
           float: right;
-          background-image: url(drag.png);
+          background-image: url(/admin/images/drag.png);
           margin: 7px 10px 0px 0px;
           visibility: hidden;
         }
@@ -253,7 +253,7 @@ nav.records {
           height: 12px;
           display: inline-block;
           float: right;
-          background-image: url(delete.png);
+          background-image: url(/admin/images/delete.png);
           margin: 7px 10px 0px 0px;
           visibility: hidden;
         }
@@ -357,7 +357,7 @@ article {
       article section .embedded_document .delete_embedded_document {
         width: 12px;
         height: 12px;
-        background: url(delete.png) 0 0 no-repeat;
+        background: url(/admin/images/delete.png) 0 0 no-repeat;
         display: block;
         position: absolute;
         top: 10px;
@@ -372,7 +372,7 @@ article {
       article section .embedded_documents .add_embedded_document {
         width: 12px;
         height: 12px;
-        background: url(add.png) 0 0 no-repeat;
+        background: url(/admin/images/add.png) 0 0 no-repeat;
         display: block;
         position: absolute;
         bottom: 7px;
@@ -454,7 +454,7 @@ article {
       -moz-box-shadow: 0px 0px 3px #777;
       float: left;
       margin-right: 20px;
-      background: transparent url(missing_photo.png) no-repeat 32px 37px;
+      background: transparent url(/admin/images/missing_photo.png) no-repeat 32px 37px;
     }
     
     article form table .attachment p {
