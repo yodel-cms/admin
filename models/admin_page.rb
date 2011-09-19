@@ -1,16 +1,13 @@
-module Yodel
-  class AdminPage < Page
-    key :class_name, String, required: true
-    allowed_parents AdminLoginPage
-    searchable false
-    hidden true
-    
-    def class_and_descendants
-      @class_and_descendants ||= class_name.constantize.descendants + [class_name.constantize]
-    end
-    
-    def root_record_id
-      class_name.constantize.root(site).id
+class AdminPage < Page
+  
+  respond_to :get do
+    with :html do
+      return unless user_allowed_to?(:view)
+      set_content(site.layouts.where(name: custom_layout).first.render(self))
+      render_or_default(:html) do
+        "<p>Sorry, a layout couldn't be found for this page</p>" # FIXME: better error message
+      end
     end
   end
+  
 end
