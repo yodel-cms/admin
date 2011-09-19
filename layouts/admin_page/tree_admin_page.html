@@ -1,0 +1,53 @@
+<div class="tree">
+  <menu>
+  </menu>
+
+  <article>
+    <div id="navigation_panels">
+    </div>
+
+    <section id="record">
+      <%= render_layout 'admin_record_form', 'html' %>
+    </section>
+    
+    <section id="new_model_panel" style="display: none">
+      <h1>New</h1>
+      <ul>
+        <% site.models.each do |model| %>
+          <% next if model.name.end_with?('_eigenmodel') || model.name.end_with?('Eigenmodel') %>
+          <a href="#" class="model" data-type="<%= model.name %>" data-model-id="<%= model.id %>">
+            <li>
+              <img src="/admin/images/load_spinner.gif" class="spinner">
+              <img src="<%= model.icon || "/admin/images/default_icon.png" %>" class="icon">
+              <p><%= model.name.titleize.humanize %></p>
+            </li>
+          </a>
+        <% end %>
+        <div style="clear: both"></div>
+      </ul>
+      <a href="#" id="cancel_new_record">Cancel</a>
+    </section>
+  </article>
+</div>
+
+<script>
+  var jsonURL = "<%= page.path %>.json";
+  var htmlURL = "<%= page.path %>";
+  var rootID = "<%= page.root.id %>";
+  var types = {
+    <% site.models.each do |model| %>
+      <% next if model.name.end_with?('_eigenmodel') || model.name.end_with?('Eigenmodel') %>
+      "<%= model.name %>": {
+        id: "<%= model.id %>",
+        name: "<%= model.name %>",
+        humanName: "<%= model.name.titleize.humanize %>",
+        validChildren: [<%= model.valid_children.collect {|child| "'#{child.name}'"}.join(',') %>]
+      },
+    <% end %>
+  };
+  
+  $(document).ready(function() {
+    showMenu("<%= page.title.gsub('"', "\\\"") %>", rootID, true);
+    initialiseWidgets();
+  });
+</script>
