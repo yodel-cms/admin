@@ -130,7 +130,7 @@ class TreeAdminPage < AdminPage
         type: record.model_name,
         root: root,
         menu_root: root ? false : record.model.menu_root?,
-        parent_id: record.parent.id.to_s,
+        parent_id: record.parent ? record.parent.id.to_s : '',
         children: children
       }
     end
