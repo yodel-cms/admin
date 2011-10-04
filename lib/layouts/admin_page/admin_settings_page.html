@@ -1,0 +1,27 @@
+<h1>Site Settings</h1>
+<form url="<%= page.path %>" id="record_form">
+  <div>
+    <label>Name</label>
+    <div><input type="text" name="name" value="<%= site.name %>"></div>
+  </div>
+  
+  <div>
+    <label>Identifier</label>
+    <div><input type="text" name="identifier" value="<%= site.identifier %>"></div>
+  </div>
+  
+  <div>
+    <label>Domains</label>
+    <div>
+      <ul>
+        <% site.domains.each do |domain| %>
+          <li><input type="hidden" name="domains[]" value="<%= domain %>"><%= domain %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  
+  <div id="save">
+    <input type="submit" value='Save'>
+  </div>
+</form>
