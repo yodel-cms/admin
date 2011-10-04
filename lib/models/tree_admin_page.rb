@@ -117,7 +117,7 @@ class TreeAdminPage < AdminPage
       if record.model.menu_root? && !root
         children = []
       else
-        children = record.children.collect {|child| tree_for(child, false)}
+        children = record.children.select {|record| visible_record(record)}.collect {|child| tree_for(child, false)}
       end    
       json_for_record(record, root, children)
     end
@@ -133,5 +133,9 @@ class TreeAdminPage < AdminPage
         parent_id: record.parent ? record.parent.id.to_s : '',
         children: children
       }
+    end
+    
+    def visible_record(record)
+      !record.model.hide_in_admin
     end
 end

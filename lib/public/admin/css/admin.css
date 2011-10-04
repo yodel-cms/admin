@@ -22,6 +22,7 @@ header {
   left: 50px;
   right: 50px;
   border-top-right-radius: 5px;
+  -moz-border-radius-topright: 5px;
 }
 
   header #lip {
@@ -57,10 +58,56 @@ header {
     height: 60px;
     line-height: 60px;
     top: 0px;
-    right: 30px;
+    right: 0px;
+    padding: 0px 30px;
+    border-top-right-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    border-left: none;
   }
+  
+    header h2 nav {
+      display: none;
+      position: absolute;
+      width: 200px;
+      z-index: 1;
+      right: 0px;
+    }
+    
+    header h2:hover {
+      background-color: #202020;
+      border-left: 1px solid #181818;
+    }
+    
+    header h2:hover nav {
+      display: block;
+      border-top: 1px solid #202020;
+    }
+    
+      header h2 nav a {
+        height: 45px;
+        line-height: 45px;
+        font-size: 12px;
+        padding-right: 30px;
+        display: block;
+        border-bottom: 1px solid #777;
+        text-align: right;
+        color: white;
+        background-color: #202020;
+      }
+      
+      header h2 nav a:hover {
+        background-color: #2a2a2a;
+      }
+      
+      header h2 nav a:last-child {
+        border-bottom: none;
+        border-bottom-left-radius: 5px;
+        -moz-border-radius-bottomleft: 5px;
+        border-bottom-right-radius: 5px;
+        -moz-border-radius-bottomright: 5px;
+      }
 
-  header nav {
+  header > nav {
     height: 60px;
     line-height: 60px;
     display: block;
@@ -68,7 +115,7 @@ header {
     overflow: hidden;
   }
   
-    header nav a {
+    header > nav a {
       display: inline-block;
       padding: 0px 15px;
       color: #888;
@@ -83,13 +130,13 @@ header {
       top: -6px;
     }
     
-    header nav a:hover {
+    header > nav a:hover {
       text-decoration: none;
       background-color: #202020;
       color: #ccc;
     }
   
-    header nav a.selected {
+    header > nav a.selected {
       color: white;
       background-color: #202020;
       border-left-color: black;
@@ -99,7 +146,7 @@ header {
       box-shadow: 0px 0px 6px black inset;
     }
     
-    header nav a.selected:hover {
+    header > nav a.selected:hover {
       text-decoration: none;
     }
 

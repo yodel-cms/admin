@@ -4,6 +4,9 @@ class AdminTreeAdminPageModelMigration < Migration
       add_field :admin_page, :alias, of: :parent
       add_one :root, model: :record
       tree_admin_pages.record_class_name = 'TreeAdminPage'
+      tree_admin_pages.allowed_children = []
+      tree_admin_pages.allowed_parents = []
+      tree_admin_pages.hide_in_admin = true
     end
   end
   

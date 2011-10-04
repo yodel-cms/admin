@@ -13,10 +13,21 @@
     <header>
       <h1>yodel</h1>
       <div id="lip"></div>
-      <h2><%= @site.name %></h2>
+      <h2>
+        <%= @site.name %>
+        <nav>
+          <a href="/admin/settings">Settings</a>
+          <% if Yodel.env.development? && AdminEditorPage.available_editors.present? %>
+            <% AdminEditorPage.available_editors.each do |editor| %>
+              <a href="/admin/edit?editor=<%= editor.command %>" class="opens-editor">Edit in <%= editor.name %></a>
+            <% end %>
+          <% end %>
+          <a href="/admin/logout">Logout</a>
+        </nav>
+      </h2>
       <nav>
-        <a class="<%= 'selected' if path == admin_page.path %>" href="<%= admin_page.path %>">Dashboard</a>
         <% admin_page.children.each do |child| %>
+          <% next if child.path == '/admin/login' || child.path == '/admin/logout' || child.path == '/admin/edit' %>
           <a class="<%= 'selected' if path == child.path %>" href="<%= child.path %>"><%= child.title %></a>
         <% end %>
       </nav>
