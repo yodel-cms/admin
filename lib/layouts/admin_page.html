@@ -26,7 +26,7 @@
         </nav>
       </h2>
       <nav>
-        <% first_parent(:admin_page).children.each do |child| %>
+        <% first_parent(:admin_page, true).children.each do |child| %>
           <% next if child.path == '/admin/login' || child.path == '/admin/logout' || child.path == '/admin/edit' || child.path == '/admin/settings' %>
           <a class="<%= 'selected' if path == child.path %>" href="<%= child.path %>"><%= child.title %></a>
         <% end %>

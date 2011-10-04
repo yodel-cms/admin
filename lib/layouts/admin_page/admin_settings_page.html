@@ -1,5 +1,6 @@
 <h1>Site Settings</h1>
-<form url="<%= page.path %>" id="record_form">
+<form action="<%= page.path %>" id="record_form" method="post">
+  <input type="hidden" name="_method" value="put">
   <div>
     <label>Name</label>
     <div><input type="text" name="name" value="<%= site.name %>"></div>
