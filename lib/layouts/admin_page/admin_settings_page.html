@@ -1,28 +1,39 @@
-<h1>Site Settings</h1>
-<form action="<%= page.path %>" id="record_form" method="post">
-  <input type="hidden" name="_method" value="put">
-  <div>
-    <label>Name</label>
-    <div><input type="text" name="name" value="<%= site.name %>"></div>
-  </div>
+<article>
+  <div id="record">
+    <h1>Site Settings</h1>
+    <form action="<%= page.path %>" id="record_form" method="post">
+      <input type="hidden" name="_method" value="put">
+      <section>
+        <div>
+          <div>
+            <label>Name</label>
+            <div><input type="text" name="name" value="<%= site.name %>"></div>
+          </div>
   
-  <div>
-    <label>Identifier</label>
-    <div><input type="text" name="identifier" value="<%= site.identifier %>"></div>
-  </div>
+          <div>
+            <label>Identifier</label>
+            <div><input type="text" name="identifier" value="<%= site.identifier %>"></div>
+          </div>
   
-  <div>
-    <label>Domains</label>
-    <div>
-      <ul>
-        <% site.domains.each do |domain| %>
-          <li><input type="hidden" name="domains[]" value="<%= domain %>"><%= domain %></li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
+          <div>
+            <label>Domains</label>
+            <div>
+              <ul id="domains_list">
+                <% site.domains.each_with_index do |domain, index| %>
+                  <li><input type="hidden" name="domains[]" value="<%= domain %>"><%= domain %><% if index > 0 %> - <a href="#" class="remove_domain">remove</a><% end %></li>
+                <% end %>
+              </ul>
+              <p id="new_domain_row">
+                New Domain: <input type="text" id="new_domain"> <button id="add_domain">Add</button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
   
-  <div id="save">
-    <input type="submit" value='Save'>
+      <div id="save">
+        <input type="submit" value='Save'>
+      </div>
+    </form>
   </div>
-</form>
+</article>
