@@ -5,6 +5,10 @@ class AdminEditorPageModelMigration < Migration
       admin_editor_pages.allowed_children = []
       admin_editor_pages.allowed_parents = []
       admin_editor_pages.hide_in_admin = true
+      admin_editor_pages.view_group = site.groups['Administrators']
+      admin_editor_pages.create_group = site.groups['Administrators']
+      admin_editor_pages.update_group = site.groups['Administrators']
+      admin_editor_pages.delete_group = site.groups['Administrators']
     end
   end
   

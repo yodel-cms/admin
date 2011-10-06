@@ -5,6 +5,10 @@ class AdminSettingsPageModelMigration < Migration
       admin_settings_pages.allowed_children = []
       admin_settings_pages.allowed_parents = []
       admin_settings_pages.hide_in_admin = true
+      admin_settings_pages.view_group = site.groups['Administrators']
+      admin_settings_pages.create_group = site.groups['Administrators']
+      admin_settings_pages.update_group = site.groups['Administrators']
+      admin_settings_pages.delete_group = site.groups['Administrators']
     end
   end
   
