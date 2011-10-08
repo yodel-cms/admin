@@ -4,7 +4,7 @@ class AdminEditorPage < Page
     attr_reader :name, :command
     def exists?; path.present?; end
     def path; @path ||= `which #{@command}`.strip; end
-    def edit(site); `#{path} #{site.site_root}`; end
+    def edit(site); `#{path} #{site.root_directory}`; end
     def initialize(name, command)
       @name = name
       @command = command
