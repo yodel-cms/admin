@@ -336,6 +336,14 @@ article {
   display: none;
 }
 
+.contains-field-type-image {
+  clear: both;
+}
+
+.contains-field-type-image + .contains-field-type-image {
+  margin-top: 35px;
+}
+
 #record .image_preview {
   width: 80px;
   height: 80px;
