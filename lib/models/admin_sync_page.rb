@@ -32,11 +32,8 @@ class AdminSyncPage < Page
         
         # assign git remote
         Dir.chdir(site.root_directory.to_s) do
-          remote_url = URI.parse(remote.url).merge("/git/#{site.remote_id}")
-          remote_url.user = CGI.escape(remote.username)
-          remote_url.password = remote.password
           `#{Yodel.config.git_path} remote rm #{REMOTE_NAME}`
-          `#{Yodel.config.git_path} remote add #{REMOTE_NAME} #{remote_url}`
+          `#{Yodel.config.git_path} remote add #{REMOTE_NAME} #{remote.git_url(site.remote_id)}`
         end
         {success: true}
       else
