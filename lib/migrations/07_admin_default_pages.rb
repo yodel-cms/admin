@@ -27,6 +27,12 @@ class AdminDefaultPagesMigration < Migration
     settings_page.parent = admin
     settings_page.save
     
+    # syncing
+    sync_page = site.admin_sync_pages.new
+    sync_page.title = 'Sync'
+    sync_page.parent = admin
+    sync_page.save
+    
     # login
     login_page = site.login_pages.new
     login_page.title = 'Login'

@@ -51,61 +51,79 @@ header {
     background-image: url(/admin/images/yodel.png);
   }
   
-  header h2 {
-    color: white;
-    font-size: 14px;
+  header #site_menu {
     position: absolute;
     height: 60px;
     line-height: 60px;
     top: 0px;
     right: 0px;
-    padding: 0px 30px;
-    border-top-right-radius: 5px;
-    -moz-border-radius-topright: 5px;
-    border-left: none;
   }
   
-    header h2 nav {
-      display: none;
-      position: absolute;
-      width: 200px;
-      z-index: 1;
-      right: 0px;
+    header #site_menu p {
+      display: inline-block;
+      color: white;
+      font-size: 14px;
     }
     
-    header h2:hover {
-      background-color: #202020;
-      border-left: 1px solid #181818;
+      header #site_menu p img {
+        margin-left: 10px;
+        margin-right: 10px;
+        position: relative;
+        top: 3px;
+      }
+  
+    header h2 {
+      display: inline-block;
+      color: white;
+      font-size: 14px;
+      padding: 0px 30px;
+      border-top-right-radius: 5px;
+      -moz-border-radius-topright: 5px;
+      border-left: 1px solid transparent;
     }
+  
+      header h2 nav {
+        display: none;
+        position: absolute;
+        width: 200px;
+        z-index: 1;
+        right: 0px;
+        top: 60px;
+      }
     
-    header h2:hover nav {
-      display: block;
-      border-top: 1px solid #202020;
-    }
-    
-      header h2 nav a {
-        height: 45px;
-        line-height: 45px;
-        font-size: 12px;
-        padding-right: 30px;
-        display: block;
-        border-bottom: 1px solid #777;
-        text-align: right;
-        color: white;
+      header h2:hover {
         background-color: #202020;
+        border-left: 1px solid #181818;
       }
+    
+      header h2:hover nav {
+        display: block;
+        border-top: 1px solid #202020;
+      }
+    
+        header h2 nav a {
+          height: 45px;
+          line-height: 45px;
+          font-size: 12px;
+          padding-right: 30px;
+          display: block;
+          border-bottom: 1px solid #777;
+          text-align: right;
+          color: white;
+          background-color: #202020;
+        }
       
-      header h2 nav a:hover {
-        background-color: #2a2a2a;
-      }
+        header h2 nav a:hover {
+          background-color: #2a2a2a;
+        }
       
-      header h2 nav a:last-child {
-        border-bottom: none;
-        border-bottom-left-radius: 5px;
-        -moz-border-radius-bottomleft: 5px;
-        border-bottom-right-radius: 5px;
-        -moz-border-radius-bottomright: 5px;
-      }
+        header h2 nav a:last-child {
+          border-bottom: none;
+          border-bottom-left-radius: 5px;
+          -moz-border-radius-bottomleft: 5px;
+          border-bottom-right-radius: 5px;
+          -moz-border-radius-bottomright: 5px;
+        }
 
   header > nav {
     height: 60px;
@@ -191,6 +209,8 @@ article {
   bottom: 0px;
   overflow-x: hidden;
   overflow-y: auto;
+  border-bottom-left-radius: 5px;
+  -moz-border-radius-bottomleft: 5px;
 }
 
 .navigation_panel {
