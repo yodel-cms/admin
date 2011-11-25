@@ -18,14 +18,18 @@
         <h2>
           <%= @site.name %>
           <nav>
-            <a href="/admin/settings">Settings</a>
-            <% if site.remote? %>
-              <a href="#" class="sync push">Push</a>
-              <a href="#" class="sync pull">Pull</a>
-              <a href="http://<%= site.remote_domains.first %>">View live site</a>
-            <% else %>
-              <% Remote.all.each do |remote| %>
-                <a href="#" class="sync create" data-sync-remote="<%= remote.id %>">Push to <%= remote.name %></a>
+            <% if current_user.groups.include?(site.groups['Developers']) %>
+              <a href="/admin/settings">Settings</a>
+            <% end %>
+            <% if Yodel.env.development? %>
+              <% if site.remote? %>
+                <a href="#" class="sync push">Push</a>
+                <a href="#" class="sync pull">Pull</a>
+                <a href="http://<%= site.remote_domains.first %>">View live site</a>
+              <% else %>
+                <% Remote.all.each do |remote| %>
+                  <a href="#" class="sync create" data-sync-remote="<%= remote.id %>">Push to <%= remote.name %></a>
+                <% end %>
               <% end %>
             <% end %>
             <% if Yodel.env.development? && AdminEditorPage.available_editors.present? %>

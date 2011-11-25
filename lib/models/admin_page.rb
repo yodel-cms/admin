@@ -2,7 +2,7 @@ class AdminPage < Page
   
   respond_to :get do
     with :html do
-      response.redirect '/admin/pages'
+      response.redirect children.first.path
     end
   end
   
