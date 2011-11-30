@@ -1,77 +1,92 @@
-<h1><span id="record_name"><%= record.name %></span></h1>
-<% record.form_for_page remote: true do |form| %>
-  <% form.success do %>
-    console.log("RECORD:", record);
-    console.log("JSON:", json);
-    $('#save_success').fadeIn().delay(2000).fadeOut();
-  
-    // remove the model id regardless of whether this was a new or existing record
-    $('#model').remove();
-  
-    // update the record's id
-    $('#record_id').remove();
-    $('#record_form').append('<input type="hidden" id="record_id" name="id" value="' + record['_id'] + '">');
-  
-    // further saves are updates
-    $('#record_form input[name=_method]').val('put');
-  
-    // update the UI to reflect any changes in the record
-    
-    updateListRecord(json);
-    /*updateRecord(record);
-    var values = jQuery.parseJSON(record.values);
-    if(values) {
-      $('#record_form .field-type-attachment, #record_form .field-type-image').each(function(index, element) {
-        element = jQuery(element);
-        var field_name = element.attr('data-field');
-
-        var file_name = 'none';
-      
-        if(values[field_name] && values[field_name].name) {
-          file_name = values[field_name].name;
-          element.find('img').attr('src', '/attachments/' + field_name + '/' + values._id + '/admin_thumb.jpg');
-          element.find('img').show();
-          element.find('.clear').show();
-          element.find('input[type=file]').val('');
-        } else {
-          element.find('.clear').hide();
-        }
-        element.find('p span').html(file_name);
-      });
-    }*/
-  <% end %>
-  
-  <% form.failure do %>
-    $('#save_failure').fadeIn().delay(2000).fadeOut();
-  <% end %>
-  
-  <% record.field_sections.each do |section| %>
-    <section>
-      <% if section.present? %>
-        <h1><%= section %> <a href="#" class="section_toggle">show</a></h1>
+<% if page.render_form %>
+  <h1>
+    <span id="record_name">
+      <% if record.new? %>
+        New <%= record.model.name.humanize %>
+      <% else %>
+        <%= record.name %>
       <% end %>
-      <div <% if section.present? %> style="display: none" <% end %>>
-        <%= form.form_for_section(section) %>
+    </span>
+  </h1>
+  <% record.form_for_page remote: true do |form| %>
+    <% form.success do %>
+      $('#save_success').fadeIn().delay(2000).fadeOut();
+  
+      // remove the model id regardless of whether this was a new or existing record
+      $('#model').remove();
+  
+      // update the record's id
+      $('#record_id').remove();
+      $('#record_form').append('<input type="hidden" id="record_id" name="id" value="' + record['_id'] + '">');
+  
+      // further saves are updates
+      $('#record_form input[name=_method]').val('put');
+  
+      // update the UI to reflect any changes in the record
+      updateListRecord(json);
+      $('#delete_row').show();
+      $('#delete_row a.delete').attr('data-record-id', record['_id']);
+      /*
+      var values = jQuery.parseJSON(record.values);
+      if(values) {
+        $('#record_form .field-type-attachment, #record_form .field-type-image').each(function(index, element) {
+          element = jQuery(element);
+          var field_name = element.attr('data-field');
+
+          var file_name = 'none';
+      
+          if(values[field_name] && values[field_name].name) {
+            file_name = values[field_name].name;
+            element.find('img').attr('src', '/attachments/' + field_name + '/' + values._id + '/admin_thumb.jpg');
+            element.find('img').show();
+            element.find('.clear').show();
+            element.find('input[type=file]').val('');
+          } else {
+            element.find('.clear').hide();
+          }
+          element.find('p span').html(file_name);
+        });
+      }*/
+    <% end %>
+  
+    <% form.failure do %>
+      $('#save_failure').fadeIn().delay(2000).fadeOut();
+    <% end %>
+  
+    <% record.field_sections.each do |section| %>
+      <% if section.display? %>
+        <section>
+          <% if section.name.present? %>
+            <h1><%= section.name %> <a href="#" class="section_toggle">show</a></h1>
+          <% end %>
+          <div <% if section.name.present? %> style="display: none" <% end %>>
+            <%= form.form_for_section(section) %>
+          </div>
+        </section>
+      <% end %>
+    <% end %>
+  
+    <% if record.new? %>
+      <input type="hidden" name="model" value="<%= record.model.id %>" id="model">
+    <% else %>
+      <input type="hidden" name="id" value="<%= record.id %>" id="record_id">
+    <% end %>
+  
+    <div id="save">
+      <div>
+        <img src="/admin/images/tick.png" style="display: none" id="save_success">
+        <img src="/admin/images/cross.png" style="display: none" id="save_failure">
+        <% form.progress do %><img src="/admin/images/save_spinner.gif" id="save_spinner"><% end %>
       </div>
-    </section>
-  <% end %>
-  
-  <% if record.new? %>
-    <input type="hidden" name="model" value="<%= record.model.id %>" id="model">
-  <% else %>
-    <input type="hidden" name="id" value="<%= record.id %>" id="record_id">
-  <% end %>
-  
-  <div id="save">
-    <div>
-      <img src="/admin/images/tick.png" style="display: none" id="save_success">
-      <img src="/admin/images/cross.png" style="display: none" id="save_failure">
-      <% form.progress do %><img src="/admin/images/save_spinner.gif" id="save_spinner"><% end %>
+      <input type="submit" value='Save'>
     </div>
-    <input type="submit" value='Save'>
+  <% end %>
+  <div class="delete" id="delete_row" <% if record.new? %>style="display: none"<% end %>>
+    <img src="/admin/images/save_spinner.gif" style="display: none" id="delete_spinner">
+    <a class="delete" data-record-id="<%= record.id %>" data-record-type="<%= record.model.name.humanize.downcase %>" href="#">Delete</a>
   </div>
 <% end %>
-<div class="delete">
-  <img src="/admin/images/save_spinner.gif" style="display: none" id="delete_spinner">
-  <a class="delete" data-record-id="<%= record.id %>" data-record-type="<%= record.model.name.humanize.downcase %>" href="#">Delete</a>
-</div>
+
+<% if page.partial_name? %>
+  <%= partial page.partial_name %>
+<% end %>

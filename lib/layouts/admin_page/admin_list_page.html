@@ -2,6 +2,9 @@
   <article>
     <menu>
       <p>Search: <input type="search" id="search"></p>
+      <% if show_new_button %>
+        <a href="#" id="new_record">New</a>
+      <% end %>
       <img src="/admin/images/load_spinner_selected.gif" style="display: none" id="activity_spinner">
     </menu>
     <section id="list_items">

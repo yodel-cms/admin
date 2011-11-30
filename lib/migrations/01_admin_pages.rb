@@ -15,13 +15,15 @@ class AdminPagesMigration < Migration
       add_field :show_record_layout, :string, default: 'admin_list_record'
       add_field :render_form, :boolean, default: true
       add_field :show_new_button, :boolean, default: true
-      add_field :partial, :string
+      add_field :partial_name, :string
       add_embed_many :columns do
         add_field :name, :string, validations: {required: {}}
         add_field :as, :string
-        add_field :style, :enum, options: %w{Text Integer Float Currency Percentage Date Time DateTime Label}, default: 'Text'
+        add_field :style, :enum, options: %w{Text Boolean Integer Float Currency Percentage Date Time DateTime Label}, default: 'Text'
         add_field :decimals, :integer
         add_field :symbol, :string, default: '$'
+        add_field :true_text, :string, default: 'Yes'
+        add_field :false_text, :string, default: 'No'
         add_field :format, :string
         add_embed_many :colors do
           add_field :label, :string

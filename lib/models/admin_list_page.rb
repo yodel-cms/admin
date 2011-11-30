@@ -1,48 +1,14 @@
 class AdminListPage < RecordProxyPage
-  # respond_to :get do
-  #   with :html do
-  #     return unless user_allowed_to?(:view)
-  #     
-  #     if params['record_id']
-  #       record = site.records.find(BSON::ObjectId.from_string(params['record_id']))
-  #       if record
-  #         layout = site.layouts.where(name: "admin_#{modelling.name.downcase.underscore}").first
-  #         if layout
-  #           layout.render(record)
-  #         else
-  #           record.name
-  #         end
-  #       end
-  #     elsif params['search']
-  #       render_list_items
-  #     else
-  #       render_or_default(:html) do
-  #         "<p>Sorry, a layout couldn't be found for this page</p>" # FIXME: better error message
-  #       end
-  #     end
-  #   end
-  # end
-  # 
-  # 
-  # def records
-  #   query = modelling.where()
-  #   
-  #   if params['search']
-  #     keywords = params['search'].split(' ').reject(&:blank?).collect(&:downcase)
-  #     query = query.where(search_keywords: keywords) unless keywords.blank?
-  #   end
-  #   
-  #   query.all
-  # end
-  # 
-  # 
-  # def render_list_items
-  #   layout = site.layouts.where(name: "admin_list_items").first
-  #   if layout
-  #     layout.render(self)
-  #   end
-  # end
-  # 
+  respond_to :get do
+    with :html do
+      if params['new']
+        @record = new_record
+        render_layout(show_record_layout, :html)
+      else
+        super()
+      end
+    end
+  end
   
   def render_value(record, column)
     raw_value = record.get(column.name)
@@ -50,6 +16,10 @@ class AdminListPage < RecordProxyPage
     
     case column.style
     when 'Text'
+      value = raw_value
+    
+    when 'Boolean'
+      raw_value = raw_value ? column.true_text : column.false_text
       value = raw_value
       
     when 'Integer'
@@ -108,6 +78,8 @@ class AdminListPage < RecordProxyPage
   def parser_for_column(column)
     case column.style
     when 'Text'
+      'text'
+    when 'Boolean'
       'text'
     when 'Integer'
       'digit'

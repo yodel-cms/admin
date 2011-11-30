@@ -44,14 +44,16 @@
   <% end %>
   
   <% @record.field_sections.each do |section| %>
-    <section>
-      <% if section.present? %>
-        <h1><%= section %> <a href="#" class="section_toggle">show</a></h1>
-      <% end %>
-      <div <% if section.present? %> style="display: none" <% end %>>
-        <%= form.form_for_section(section) %>
-      </div>
-    </section>
+    <% if section.display? %>
+      <section>
+        <% if section.name.present? %>
+          <h1><%= section.name %> <a href="#" class="section_toggle">show</a></h1>
+        <% end %>
+        <div <% if section.name.present? %> style="display: none" <% end %>>
+          <%= form.form_for_section(section) %>
+        </div>
+      </section>
+    <% end %>
   <% end %>
   
   <% if @record.new? %>
