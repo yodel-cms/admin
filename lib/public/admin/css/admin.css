@@ -876,6 +876,15 @@ nav.records {
   #list_items tbody tr.selected td {
     background-color: #E0E4E7;
   }
+    
+    #list_items td span {
+      color: white;
+      padding: 3px 8px;
+      font-size: 11px;
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      font-weight: bold;
+    }
 
 .list #record {
   position: absolute;
@@ -939,21 +948,21 @@ div.delete {
   margin-bottom: 12px;
 }
 
-.list #record table {
+#partial table {
   width: 100%;
   font-size: 13px;
   color: #777;
 }
 
-  .list #record table td {
+  #partial table td {
     padding: 6px 0px;
   }
   
-  .list #record table a {
+  #partial table a {
     color: #777;
   }
   
-  .list #record table a:hover {
+  #partial table a:hover {
     text-decoration: underline;
   }
 

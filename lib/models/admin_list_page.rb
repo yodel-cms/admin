@@ -11,7 +11,15 @@ class AdminListPage < RecordProxyPage
   end
   
   def render_value(record, column)
-    raw_value = record.get(column.name)
+    if column.name.include?('.')
+      parts = column.name.split('.')
+      raw_value = record
+      until parts.empty?
+        raw_value = raw_value.try(parts.shift)
+      end
+    else
+      raw_value = record.get(column.name)
+    end
     value = ''
     
     case column.style
