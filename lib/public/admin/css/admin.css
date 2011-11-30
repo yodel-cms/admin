@@ -955,7 +955,12 @@ div.delete {
 }
 
   #partial table td {
-    padding: 6px 0px;
+    padding: 7px 0px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  #partial table tr:last-child td {
+    border-bottom: none;
   }
   
   #partial table a {
@@ -966,6 +971,11 @@ div.delete {
     text-decoration: underline;
   }
 
+#partial p {
+  font-size: 13px;
+  color: #777;
+  line-height: 17px;
+}
 
 
 
