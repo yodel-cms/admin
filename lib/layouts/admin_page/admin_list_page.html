@@ -1,0 +1,51 @@
+<div class="list">
+  <article>
+    <menu>
+      <p>Search: <input type="search" id="search"></p>
+      <img src="/admin/images/load_spinner_selected.gif" style="display: none" id="activity_spinner">
+    </menu>
+    <section id="list_items">
+      <table class="<%= title.downcase.underscore %>">
+        <% page.columns.size.times do %>
+          <col></col>
+        <% end %>
+        <thead>
+          <tr>
+            <% page.columns.each do |column| %>
+              <th class="<%= column.style.downcase %> <%= parser_for_column(column) %>" data-field-name="<%= column.name %>">
+                <% if column.as %>
+                  <%= column.as %>
+                <% else %>
+                  <%= column.name.humanize.titlecase %>
+                <% end %>
+              </th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% records.each do |record| %>
+            <%= render_record(record) %>
+          <% end %>
+        </tbody>
+      </table>
+      <script>
+        $(document).ready(function() {
+          $('#list_items > table').tablesorter({
+            textExtraction: adminListPageValueExtractor,
+            sortList: <%= sort_list %>
+          }); 
+          
+          fixHeaders($('#list_items table'));
+        });
+      </script>
+    </section>
+    
+    <section id="record">
+    </section>
+  </article>
+</div>
+
+<script>
+  var jsonURL = "<%= page.path %>.json";
+  var htmlURL = "<%= page.path %>";
+</script>

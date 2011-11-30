@@ -41,15 +41,11 @@
           </nav>
         </h2>
       </div>
-      <nav>
-        <% first_parent(:admin_page, true).children.each do |child| %>
-          <% next if child.path == '/admin/login' || child.path == '/admin/logout' || child.path == '/admin/edit' || child.path == '/admin/settings' || child.path == '/admin/sync' %>
-          <a class="<%= 'selected' if path == child.path %>" href="<%= child.path %>"><%= child.title %></a>
-        <% end %>
-      </nav>
+      <%= menu :nav %>
     </header>
     <%= content %>
     
+    <script src="/admin/js/jquery.tablesorter.min.js"></script>
     <script src="/admin/chosen/chosen.jquery.min.js"></script>
     <script src="/admin/js/jquery-ui-1.8.16.custom.min.js"></script>
     <script src="/admin/js/json2.js"></script>

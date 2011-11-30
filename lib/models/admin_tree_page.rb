@@ -1,4 +1,4 @@
-class TreeAdminPage < AdminPage
+class AdminTreePage < Page
   # ---------------------------
   # show
   # ---------------------------

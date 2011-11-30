@@ -183,10 +183,12 @@ article {
   right: 50px;
   bottom: 50px;
   border-bottom-left-radius: 5px;
+  -moz-border-radius-bottomleft: 5px;
   border-bottom-right-radius: 5px;
+  -moz-border-radius-bottomright: 5px;
 }
 
-#record {
+.tree #record {
   position: absolute;
   top: 30px;
   left: 30px;
@@ -243,6 +245,10 @@ article {
   margin-top: 40px;
   font-size: 13px;
 }
+
+/*.list #record section:first-child {
+  margin-top: 0px;
+}*/
 
   #record section h1 {
     margin-bottom: 15px;
@@ -468,7 +474,7 @@ article {
 
 
 /* ---------------------------------------------------- */
-/* records list                                         */
+/* records tree                                         */
 /* ---------------------------------------------------- */
 nav.previous_folder {
   position: absolute;
@@ -777,65 +783,136 @@ nav.records {
 
 
 
+/* ---------------------------------------------------- */
+/* records list                                         */
+/* ---------------------------------------------------- */
+.list menu {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  height: 40px;
+  right: 500px;
+  border-top: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+  background-color: #fafafa;
+  border-bottom-left-radius: 5px;
+  -moz-border-radius-bottomleft: 5px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  article menu {
-    height: 45px;
-    display: block;
-    background: #FAFDFF;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FAFDFF', endColorstr='#DAE3E9');
-    background: -webkit-gradient(linear, left top, left bottom, from(#FAFDFF), to(#DAE3E9));
-    background: -moz-linear-gradient(top,  #FAFDFF,  #DAE3E9);
-    border-bottom: 1px solid #AABECE;
-    line-height: 85px;
-    padding: 0px 30px 0px 30px;
-    display: none;
-  }
-
-  .tree menu {
-    width: 290px;
-    border-right: 1px solid #AABECE;
+  .list menu p {
+    font-size: 13px;
     position: absolute;
-    top: 100px;
-    left: 0px;
-    z-index: 1;
+    top: 8px;
+    left: 15px;
+    color: #333;
   }
 
-    input#admin_search {
-      width: 315px;
-      height: 40px;
-      font-size: 13px;
-      color: #777;
-      border: 1px solid #E6E6E6;
-      border-radius: 20px;
-      -moz-border-radius: 20px;
-      padding-left: 20px;
-      display: inline-block;
-      outline: none;
-      -webkit-box-shadow: 0px 1px 0px white;
-      background: 280px 10px no-repeat #fff url(/admin/images/search.png);
-    }
+#list_items {
+  position: absolute;
+  top: 37px;
+  bottom: 41px;
+  left: 0px;
+  right: 500px;
+  overflow: auto;
+  border-right: 1px solid #e0e0e0;
+}
 
+#list_items table {
+  width: 100%;
+}
 
+  #list_items th, #list_items td {
+    padding: 10px 10px 9px;
+    line-height: 18px;
+    font-size: 13px;
+    line-height: 17px;
+    cursor: pointer;
+    background-color: white;
+  }
+  
+  #list_items th {
+    font-weight: bold;
+    text-align: left;
+    line-height: 18px;
+    height: 18px;
+    color: #333;
+    position: relative;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #fafafa;
+  }
+  
+  #list_items th:last-child {
+    border-right: 1px solid #e0e0e0;
+  }
+  
+  .headerSortDown:after {
+    content: "";
+    position: absolute;
+    top: 16px;
+    right: 10px;
+    border-width: 0 4px 4px;
+    border-style: solid;
+    border-color: #000 transparent;
+  }
+  
+  .headerSortUp:after {
+    content: "";
+    position: absolute;
+    top: 16px;
+    right: 10px;
+    border-width: 4px 4px 0px 4px;
+    border-style: solid;
+    border-color: #000 transparent;
+  }
+  
+  #list_items td {
+    border-top: 1px solid #eaeaea;
+  }
+  
+  #list_items tbody tr:hover td {
+    background-color: #E8ECEF;
+  }
+  
+  #list_items tbody tr.selected td {
+    background-color: #E0E4E7;
+  }
 
+.list #record {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  width: 450px;
+  bottom: 25px;
+  overflow: auto;
+}
+
+.list a.delete {
+  font-size: 12px;
+  color: #333;
+  text-decoration: none;
+  line-height: 24px;
+  display: block;
+}
+
+.list a.delete:hover {
+  text-decoration: underline;
+}
+
+#delete_spinner {
+  float: right;
+}
+
+div.delete {
+  height: 24px;
+  width: 80px;
+}
+
+#activity_spinner {
+  float: right;
+  position: relative;
+  top: 11px;
+  right: 11px;
+}
 
 
 

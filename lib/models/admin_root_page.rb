@@ -1,4 +1,4 @@
-class AdminPage < Page
+class AdminRootPage < Page
   
   respond_to :get do
     with :html do

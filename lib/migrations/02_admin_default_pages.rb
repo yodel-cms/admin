@@ -3,17 +3,38 @@ class AdminDefaultPagesMigration < Migration
     home_page = site.pages.where(path: '/').first
     
     # root admin page
-    admin = site.admin_pages.new
+    admin = site.admin_root_pages.new
     admin.title = 'Admin'
     admin.parent = home_page
     admin.save
     
     # pages
-    pages = site.tree_admin_pages.new
+    pages = site.admin_tree_pages.new
     pages.title = 'Pages'
     pages.parent = admin
     pages.root = home_page
     pages.save
+    
+    # users
+    users = site.admin_list_pages.new
+    users.title = 'Users'
+    users.parent = admin
+    users.record_model = site.users
+    name_col = users.columns.new
+    name_col.name = 'name'
+    name_col.style = 'Text'
+    name_col.save
+    email_col = users.columns.new
+    email_col.name = 'email'
+    email_col.style = 'Text'
+    email_col.save
+    signup_col = users.columns.new
+    signup_col.name = 'created_at'
+    signup_col.as = 'Signup Date'
+    signup_col.style = 'Date'
+    signup_col.default_sort = true
+    signup_col.save
+    users.save
     
     # edit
     edit_page = site.admin_editor_pages.new
@@ -48,8 +69,30 @@ class AdminDefaultPagesMigration < Migration
     logout_page.redirect_to = admin
     logout_page.parent = admin
     logout_page.save
+    
+    # nav
+    nav = site.menus.new
+    nav.root = admin
+    nav.name = 'nav'
+    edit_exc = nav.exceptions.new
+    edit_exc.page = edit_page
+    edit_exc.save
+    settings_exc = nav.exceptions.new
+    settings_exc.page = settings_page
+    settings_exc.save
+    sync_exc = nav.exceptions.new
+    sync_exc.page = sync_page
+    sync_exc.save
+    login_exc = nav.exceptions.new
+    login_exc.page = login_page
+    login_exc.save
+    logout_exc = nav.exceptions.new
+    logout_exc.page = logout_page
+    logout_exc.save
+    nav.save
   end
   
   def self.down(site)
+    site.pages.where(path: '/admin').first.destroy
   end
 end
