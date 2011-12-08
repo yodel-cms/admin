@@ -40,7 +40,7 @@ class AdminSyncPage < Page
         conflicts = pull
         if conflicts.empty?
           Dir.chdir(site.root_directory.to_s) do
-            {success: true, status: `#{Yodel.config.git_path} push #{REMOTE_NAME} master`}
+            {success: true, status: `#{Yodel.config.git_path} push #{REMOTE_NAME} master`, remoteDomain: site.remote_domains.first}
           end
         else
           {success: false, conflicts: conflicts}
