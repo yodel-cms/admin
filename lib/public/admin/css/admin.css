@@ -201,6 +201,10 @@ article {
   left: 402px;
 }
 
+.settings #record {
+  padding: 40px;
+}
+
 #navigation_panels {
   background-color: #fefefe;
   border-right: 1px solid #e0e0e0;
