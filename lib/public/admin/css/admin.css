@@ -234,6 +234,29 @@ article {
 /* ---------------------------------------------------- */
 /* record form                                          */
 /* ---------------------------------------------------- */
+#save_status {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  color: white;
+  height: 22px;
+  line-height: 22px;
+  font-size: 12px;
+  font-weight: bold;
+  background: #D6362E;
+}
+
+.tree #save_status {
+  left: 370px;
+  text-align: center;
+}
+
+.list #save_status {
+  width: 500px;
+  left: auto;
+}
+
 #record > h1 {
   font-size: 18px;
   color: #3F3F3F;
