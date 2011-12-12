@@ -2,7 +2,7 @@
   <h1>
     <span id="record_name">
       <% if record.new? %>
-        New <%= record.model.name.humanize %>
+        New <%= record.model.name.underscore.humanize.titleize %>
       <% else %>
         <%= record.name %>
       <% end %>
