@@ -52,7 +52,7 @@ class AdminSyncPage < Page
   private
     def commit
       Dir.chdir(site.root_directory.to_s) do
-        status = `#{Yodel.config.git_path} status -z`.split("\0").collect(&:strip)
+        status = `#{Yodel.config.git_path} status --porcelain -z`.split("\0").collect(&:strip)
         status.each do |change|
           state, file = change.split
           `#{Yodel.config.git_path} add #{file}` if state == '??' || state.include?('U')
@@ -70,7 +70,7 @@ class AdminSyncPage < Page
       
       Dir.chdir(site.root_directory.to_s) do
         `#{Yodel.config.git_path} pull #{REMOTE_NAME} master`
-        status = `#{Yodel.config.git_path} status -z`.split("\0").collect(&:strip)
+        status = `#{Yodel.config.git_path} status --porcelain -z`.split("\0").collect(&:strip)
         status.each do |change|
           state, file = change.split
           conflicts << file if state.include?('U')
