@@ -6,6 +6,7 @@ class AdminDefaultPagesMigration < Migration
     admin = site.admin_root_pages.new
     admin.title = 'Admin'
     admin.parent = home_page
+    admin.show_in_menus = false
     admin.save
     
     # pages
