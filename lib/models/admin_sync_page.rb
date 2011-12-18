@@ -77,6 +77,10 @@ class AdminSyncPage < Page
         end
       end
       
-      conflicts
+      conflicts.tap do |conflicts|
+        if conflicts.empty?
+          Migration.run_migrations(site)
+        end
+      end
     end
 end
