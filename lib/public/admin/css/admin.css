@@ -269,13 +269,14 @@ article {
   }
   
 #record section {
-  margin-top: 40px;
+  margin-top: 25px;
   font-size: 13px;
 }
 
-/*.list #record section:first-child {
-  margin-top: 0px;
-}*/
+#record form section > div > div {
+  clear: both;
+  padding-top: 15px;
+}
 
   #record section h1 {
     margin-bottom: 15px;
@@ -302,7 +303,6 @@ article {
 #record form > section > div > div > div {
   padding-left: 110px;
   padding-right: 30px;
-  padding-bottom: 15px;
   vertical-align: top;
 }
 
@@ -371,10 +371,6 @@ article {
 
 .contains-field-type-image {
   clear: both;
-}
-
-.contains-field-type-image + .contains-field-type-image {
-  margin-top: 35px;
 }
 
 #record .image_preview {
