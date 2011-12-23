@@ -45,6 +45,17 @@
     </header>
     <%= content %>
     
+    
+    <div id="alert-background" style="display: none"></div>
+    <div id="alert" style="display: none">
+      <h1>Error</h1>
+      <p>Error text here</p>
+      <menu>
+        <a href="#" class="dismiss">Cancel</a>
+        <a href="#" class="confirm">OK</a>
+      </menu>
+    </div>
+    
     <script src="/admin/js/jquery.tablesorter.min.js"></script>
     <script src="/admin/chosen/chosen.jquery.min.js"></script>
     <script src="/admin/js/jquery-ui-1.8.16.custom.min.js"></script>
