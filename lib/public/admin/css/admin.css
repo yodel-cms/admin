@@ -504,8 +504,13 @@ article {
   display: none;
 }
 
-.contains-field-type-image {
+.contains-field-type-image, .contains-field-type-image + div {
   clear: both;
+  margin-top: 15px;
+}
+
+.contains-field-type-image {
+  min-height: 82px;
 }
 
 #record .image_preview {
@@ -570,6 +575,8 @@ article {
 
 .add-embedded, .delete-embedded {
   text-align: right;
+  padding-right: 20px;
+  margin-top: 20px;
 }
 
   .add-embedded a, .delete-embedded a {
