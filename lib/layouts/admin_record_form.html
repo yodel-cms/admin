@@ -1,6 +1,7 @@
 <h1><span class="type"><%= @record.model_name.underscore.humanize.titleize %></span> <span id="record_name"><%= @record.name %></span></h1>
 <% form_for @record, page.path, remote: true, params: {id: 'record_form'} do |form| %>
   <% form.success do %>
+    // TODO: the form may need to be re-generated: the state of the form may not be the state that was submitted
     $('#save_success').fadeIn().delay(2000).fadeOut();
     
     // remove the model and parent id's regardless of whether this was a new or existing record
@@ -11,46 +12,80 @@
     $('#record_id').remove();
     $('#record_form').append('<input type="hidden" id="record_id" name="id" value="' + record.id + '">');
     
+    // update embedded record ids
+    var values = jQuery.parseJSON(record.values);
+    updateEmbeddedRecordIds(values);
+    
+    // and image and attachment names
+    updateImageAndAttachmentNames(values);
+    
     // further saves are updates
     $('#record_form input[name=_method]').val('put');
     
     // update the UI to reflect any changes in the record
     $('#record_name').html(record.name)
     updateRecord(record);
-    var values = jQuery.parseJSON(record.values);
-    if(values) {
-      $('#record_form .field-type-attachment, #record_form .field-type-image').each(function(index, element) {
-        element = jQuery(element);
-        var field_name = element.attr('data-field');
-
-        var file_name = 'none';
-        
-        if(values[field_name] && values[field_name].name) {
-          file_name = values[field_name].name;
-          element.find('img').attr('src', '/attachments/' + field_name + '/' + values._id + '/admin_thumb.jpg');
-          element.find('img').show();
-          element.find('.clear').show();
-          element.find('input[type=file]').val('');
-        } else {
-          element.find('.clear').hide();
-        }
-        element.find('p span').html(file_name);
-      });
-    }
   <% end %>
   
   <% form.failure do %>
     $('#save_failure').fadeIn().delay(2000).fadeOut();
   <% end %>
   
-  <% @record.field_sections.each do |section| %>
+  <% @record.field_sections.values.each do |section| %>
     <% if section.display? %>
+      
       <section>
         <% if section.name.present? %>
           <h1><%= section.name %> <a href="#" class="section_toggle">show</a></h1>
         <% end %>
+        
         <div <% if section.name.present? %> style="display: none" <% end %>>
-          <%= form.form_for_section(section) %>
+          <% section.displayed_fields.each do |field| %>
+          
+            <% if field.type == 'many_embedded' %>
+              <div
+                class='contains-field-type-<%= field.type %>'
+                data-field-human-name="<%= field.name.underscore.singularize.humanize.downcase %>"
+                data-field-name="<%= field.name %>">
+                <% if form.prefix %>
+                  <input type="hidden" name="<%= form.prefix %>[][<%= field.name %>]" value="">
+                <% else %>
+                  <input type="hidden" name="<%= field.name %>[]" value="">
+                <% end %>
+                
+                <%= form.label(field.name) %>
+                
+                <div>
+                  <p class="no-embedded" <% unless @record.get(field.name).empty? %>style="display: none"<% end %>>
+                    No <%= field.name.underscore.pluralize.humanize.downcase %>
+                  </p>
+                  <span class="field-type-many_embedded">
+                    <% form.field(field.name, blank_record: true) do |embedded_form| %>
+                      <% if embedded_form.record.new? %>
+                        <span class="embedded-record blank-record">
+                          <%= embedded_form.form_for_section(embedded_form.record.field_sections[nil]) %>
+                          <input type="hidden" name="<%= field.name %>[][_id]" value="">
+                      <% else %>
+                        <span class="embedded-record" id="<%= embedded_form.record.id.to_s %>">
+                          <%= embedded_form.form_for_section(embedded_form.record.field_sections[nil]) %>
+                          <input type="hidden" name="<%= field.name %>[][_id]" value="<%= embedded_form.record.id.to_s %>">
+                      <% end %>
+                          <p class="delete-embedded"><a href="#">Delete</a></p>
+                          <div style="clear: both"></div>
+                        </span>
+                    <% end %>
+                  </span>
+                  
+                  <%= form.status(field.name) %>
+                  <p class="add-embedded"><a href="#">Add <%= field.name.underscore.singularize.humanize.downcase %></a></p>
+                </div>
+              </div>
+              
+            <% else %>
+              <%= form.field_row(field.name, field) %>
+              <div style="clear: both"></div>
+            <% end %>
+          <% end %>
         </div>
         <div style="clear: both"></div>
       </section>

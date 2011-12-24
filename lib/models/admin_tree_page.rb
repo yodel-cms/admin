@@ -18,7 +18,6 @@ class AdminTreePage < Page
       
       # show a blank form for a new record
       when 'new'
-        status 500 and return ''
         model = site.models.find(BSON::ObjectId.from_string(params['model']))
         parent = site.records.find(BSON::ObjectId.from_string(params['parent']))
         @record = model.new

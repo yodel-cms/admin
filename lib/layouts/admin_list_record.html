@@ -53,7 +53,7 @@
       $('#save_failure').fadeIn().delay(2000).fadeOut();
     <% end %>
   
-    <% record.field_sections.each do |section| %>
+    <% record.field_sections.values.each do |section| %>
       <% if section.display? %>
         <section>
           <% if section.name.present? %>

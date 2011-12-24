@@ -430,11 +430,16 @@ article {
   float: left;
 }
 
-#record form > section > div > div > div {
+
+#record form > section > div > div > div, /* top level, main record field */
+.field-type-many_embedded > span > div > div, /* field of a many embedded record */
+.field-type-one_embedded > span > div > div /* field of a single embedded record */
+{
   padding-left: 110px;
   padding-right: 30px;
   vertical-align: top;
 }
+
 
 /* FIXME: html isn't added as a class to the div */
 #record form div.html {
@@ -555,6 +560,31 @@ article {
 /* date and time */
 #record .contains-field-type-date select, #record .contains-field-type-time select {
   width: auto;
+}
+
+/* embedded fields */
+.no-embedded, .add-embedded, .delete-embedded {
+  color: #777;
+  font-size: 13px;
+}
+
+.add-embedded, .delete-embedded {
+  text-align: right;
+}
+
+  .add-embedded a, .delete-embedded a {
+    color: #777;
+  }
+
+.delete-embedded {
+  clear: both;
+}
+
+.field-type-many_embedded > span {
+  display: block;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
 }
 
 /* validations */
