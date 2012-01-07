@@ -63,12 +63,12 @@
                     <% form.field(field.name, blank_record: true) do |embedded_form| %>
                       <% if embedded_form.record.new? %>
                         <span class="embedded-record blank-record">
-                          <%= embedded_form.form_for_section(embedded_form.record.field_sections[nil]) %>
                           <input type="hidden" name="<%= field.name %>[][_id]" value="">
+                          <%= embedded_form.form_for_section(embedded_form.record.field_sections[nil]) %>
                       <% else %>
                         <span class="embedded-record" id="<%= embedded_form.record.id.to_s %>">
-                          <%= embedded_form.form_for_section(embedded_form.record.field_sections[nil]) %>
                           <input type="hidden" name="<%= field.name %>[][_id]" value="<%= embedded_form.record.id.to_s %>">
+                          <%= embedded_form.form_for_section(embedded_form.record.field_sections[nil]) %>
                       <% end %>
                           <p class="delete-embedded"><a href="#">Delete</a></p>
                           <div style="clear: both"></div>

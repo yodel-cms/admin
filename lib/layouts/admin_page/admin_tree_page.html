@@ -12,7 +12,7 @@
       <h1>New</h1>
       <ul>
         <% site.models.each do |model| %>
-          <% next if model.name.end_with?('_eigenmodel') || model.name.end_with?('Eigenmodel') %>
+          <% next if model.name.end_with?('_eigenmodel') || model.name.end_with?('Eigenmodel') || model.hide_in_admin %>
           <a href="#" class="model" data-type="<%= model.name %>" data-model-id="<%= model.id %>">
             <li>
               <img src="/admin/images/load_spinner.gif" class="spinner">
