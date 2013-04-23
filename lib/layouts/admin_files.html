@@ -1,0 +1,29 @@
+<link rel="stylesheet" type="text/css" href="/admin/css/media_browser.css">
+<script src="/core/js/jquery.min.js"></script>
+<script src="/core/js/yodel_jquery.js"></script>
+<script src="/admin/tiny_mce/tiny_mce_popup.js"></script>
+
+<div class="browser">
+  <h1>Files</h1>
+
+  <% form_for_new_record remote: true do |form| %>
+    <% form.success do %>
+      $('.browser').load('/admin/files');
+    <% end %>
+    <%= form.label :file, 'Upload new file' %>
+    <%= form.field :file %>
+    <input type="submit" value='Upload'>
+  <% end %>
+
+  <hr>
+
+  <ul class="items">
+    <% records.sort_by(&:created_at).reverse.each do |record| %>
+      <li>
+        <p><a href="#" data-url="<%= record.file.url %>"><%= record.file.name %></a><span><%= record.created_at.strftime("%e %b %Y") %></span></p>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<script src="/admin/js/media_browser.js"></script>

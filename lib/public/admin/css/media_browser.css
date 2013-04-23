@@ -1,0 +1,48 @@
+.browser form {
+  margin-top: 12px;
+}
+
+.browser form label {
+  margin-bottom: 5px;
+  display: block;
+}
+
+.browser form input[type=checkbox], .browser form .field-type-attachment span, .browser form .field-type-attachment p {
+  display: none;
+}
+
+.browser .items {
+  padding: 0;
+}
+
+.browser .items li {
+  list-style-type: none;
+  margin-bottom: 10px;
+}
+
+.browser .items li img {
+  width: 75px;
+  height: 75px;
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.browser .items li p {
+  font-weight: bold;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 0px;
+}
+
+  .browser .items li p a {
+    text-decoration: none;
+  }
+
+  .browser .items li p span {
+    display: block;
+    font-weight: normal;
+    font-size: 10px;
+    color: #777;
+    margin-top: 3px;
+  }

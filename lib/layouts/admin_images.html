@@ -1,0 +1,30 @@
+<link rel="stylesheet" type="text/css" href="/admin/css/media_browser.css">
+<script src="/core/js/jquery.min.js"></script>
+<script src="/core/js/yodel_jquery.js"></script>
+<script src="/admin/tiny_mce/tiny_mce_popup.js"></script>
+
+<div class="browser">
+  <h1>Images</h1>
+
+  <% form_for_new_record remote: true, id: 'admin_images_upload_form' do |form| %>
+    <% form.success do %>
+      $('.browser').load('/admin/images');
+    <% end %>
+    <%= form.label :image, 'Upload new image' %>
+    <%= form.field :image %>
+    <input type="submit" value='Upload'>
+  <% end %>
+
+  <hr>
+
+  <ul class="items">
+    <% records.sort_by(&:created_at).reverse.each do |record| %>
+      <li>
+        <img src="<%= record.image.url :thumbnail %>">
+        <p><a href="#" data-url="<%= record.image.url %>"><%= record.image.name %></a><span><%= record.created_at.strftime("%e %b %Y") %></span></p>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<script src="/admin/js/media_browser.js"></script>

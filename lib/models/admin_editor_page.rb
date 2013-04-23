@@ -11,7 +11,11 @@ class AdminEditorPage < Page
     end
   end
   
-  EDITORS = [Editor.new('TextMate', 'mate')]
+  EDITORS = [
+    Editor.new('TextMate', 'mate'),
+    Editor.new('Sublime Text 2', 'subl'),
+    Editor.new('Espresso', 'decaf')
+  ]
   
   def self.available_editors
     @available_editors ||= EDITORS.select(&:exists?)
