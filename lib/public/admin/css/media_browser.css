@@ -7,7 +7,7 @@
   display: block;
 }
 
-.browser form input[type=checkbox], .browser form .field-type-attachment span, .browser form .field-type-attachment p {
+.browser form input[type=checkbox], .browser form .field-type-attachment span, .browser form .field-type-attachment p, .browser form .field-type-image span, .browser form .field-type-image p {
   display: none;
 }
 
